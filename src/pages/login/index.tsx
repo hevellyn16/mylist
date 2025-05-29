@@ -5,6 +5,7 @@ import {
     View,
     Image,
     TextInput,
+    TouchableOpacity,
 } from "react-native";
 import { styles } from "./style";
 import Logo from "../../assets/logo.png";
@@ -22,7 +23,7 @@ export default function Login() {
             style={styles.logo} 
             resizeMode="contain"
             />
-            <Text style={styles.header}>Bem vindo de volta!</Text>
+            <Text style={styles.header}>Seja bem-vindo(a)!</Text>
         </View>
 
         <View style={styles.boxMid}>
@@ -49,7 +50,19 @@ export default function Login() {
         </View>
 
         <View style={styles.boxBottom}>
-            <Text>bottom</Text>
+            <TouchableOpacity style={styles.button}>
+                <Text style={styles.textButton}>ENTRAR</Text>
+            </TouchableOpacity>
+        </View>
+
+        <View style={styles.bottom}>
+            <Text style={styles.createAccount}>
+            Não tem uma conta? {' '}
+            <Text style={styles.createAccountBold}>
+                Criar conta
+            </Text>
+
+        </Text>
         </View>
     </View>
   );
