@@ -62,14 +62,14 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: 10,
         alignItems: 'center',
-        paddingHorizontal: 30,
+        paddingHorizontal: 15,
         backgroundColor: themes.colors.lightGray,
     },
 
     input: {
         height: '100%',
         borderRadius: 40,
-        width: '100%',
+        width: '90%',
     },
 
     iconInput: {
