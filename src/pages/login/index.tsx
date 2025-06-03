@@ -17,6 +17,8 @@ import mail from "../../assets/mail.png";
 import open from "../../assets/open.png";
 import { themes } from "../../global/themes";
 import closed from "../../assets/closed.png";
+import { Input } from "../../components/Input";
+import { MaterialIcons, FontAwesome, Octicons } from '@expo/vector-icons';
 
 
 export default function Login() {
@@ -64,34 +66,21 @@ export default function Login() {
         </View>
 
         <View style={styles.boxMid}>
-            <Text style ={styles.loginInput}>ENDEREÇO DE E-MAIL</Text>
-
-            <View style={styles.BoxInput}>
-                <TextInput 
-                style={styles.input}
+            <Input
                 value={email}
                 onChangeText={setEmail}
-                />
-                <Image
-                source={mail}
-                style={styles.iconInput}
-                />
-            </View>
-            
-            <Text style ={styles.loginInput}>SENHA</Text>
+                title="ENDEREÇO DE E-MAIL"
+                IconRight={MaterialIcons}
+                iconRightName="email"
+            />
 
-            <View style={styles.BoxInput}>
-                <TextInput 
-                style={styles.input}
+            <Input
                 value={password}
                 onChangeText={setPassword}
-                />
-                <Image
-                source={closed}
-                style={styles.iconInput}
-                />
-            </View>
-
+                title="SENHA"
+                IconLeft={Octicons}
+                iconLeftName="eye-closed"
+            />
         </View>
 
         <View style={styles.boxBottom}>
