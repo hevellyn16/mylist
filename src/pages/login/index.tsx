@@ -13,10 +13,7 @@ import {
 
 import { styles } from "./style";
 import Logo from "../../assets/logo.png";
-import mail from "../../assets/mail.png";
-import open from "../../assets/open.png";
 import { themes } from "../../global/themes";
-import closed from "../../assets/closed.png";
 import { Input } from "../../components/Input";
 import { MaterialIcons, FontAwesome, Octicons } from '@expo/vector-icons';
 
@@ -25,6 +22,7 @@ export default function Login() {
 
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const [showPassword, setShowPassword] = React.useState(true);
     const [loading, setLoading] = React.useState(false);
 
     async function getLogin() {
@@ -32,6 +30,7 @@ export default function Login() {
             setLoading(true);
 
             if (!email || !password) {
+                setLoading(false);
                 return Alert.alert('Atenção!','Preencha todos os campos!')
             }
 
@@ -78,8 +77,10 @@ export default function Login() {
                 value={password}
                 onChangeText={setPassword}
                 title="SENHA"
-                IconLeft={Octicons}
-                iconLeftName="eye-closed"
+                IconRight={Octicons}
+                iconRightName={showPassword?"eye-closed":"eye"}
+                secureTextEntry={showPassword}
+                onIconRightPress={()=>setShowPassword(!showPassword)}
             />
         </View>
 

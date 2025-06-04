@@ -17,8 +17,7 @@ import {
  import closed from '../../assets/closed.png';
  import { MaterialIcons, FontAwesome, Octicons } from '@expo/vector-icons';
  
- type IconComponent =   React.ComponentType<React.ComponentProps<typeof Image>> |
-                        React.ComponentType<React.ComponentProps<typeof MaterialIcons>> |
+ type IconComponent =   React.ComponentType<React.ComponentProps<typeof MaterialIcons>> |
                         React.ComponentType<React.ComponentProps<typeof FontAwesome>> |
                         React.ComponentType<React.ComponentProps<typeof Octicons>>;
 
@@ -45,18 +44,39 @@ export const Input = forwardRef<TextInput, InputProps>((props, ref) => {
     ...rest
   } = props;
 
+  const calculateSizeWidth = () => {
+    if (IconLeft && IconRight) {
+        return '80%';
+    } else if (IconLeft || IconRight) {
+        return '90%';
+    }
+    return '100%';
+  }
+
+  const calculateSizePadding = () => {
+    if (IconLeft && IconRight) {
+        return 0;
+    } else if (IconLeft || IconRight) {
+        return 10;
+    }
+    return 20;
+  }
+
     return (
         <>
-            <Text style ={styles.loginInput}>{title}</Text>
+            {title && <Text style ={styles.loginInput}>{title}</Text>}
 
-            <View style={styles.BoxInput}>
+            <View style={[styles.BoxInput, {paddingLeft: calculateSizePadding()}]}>
                 <TextInput
-                style={styles.input}
+                style={[
+                    styles.input
+                    , { width: calculateSizeWidth() }
+                ]}
                 {...rest}
                 />
 
                 {IconLeft && iconLeftName && (
-                    <TouchableOpacity onPress={onIconLeftPress}>
+                    <TouchableOpacity onPress={onIconLeftPress} style={styles.buttomIcon}>
                         <IconLeft
                         name={iconLeftName as any}
                         size={20}
@@ -66,7 +86,7 @@ export const Input = forwardRef<TextInput, InputProps>((props, ref) => {
                     </TouchableOpacity>)}
 
                 {IconRight && iconRightName && (
-                    <TouchableOpacity onPress={onIconRightPress}>
+                    <TouchableOpacity onPress={onIconRightPress} style={styles.buttomIcon}>
                         <IconRight
                         name={iconRightName as any}
                         size={20}
